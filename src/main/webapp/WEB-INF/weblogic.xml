@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.0/weblogic-web-app.xsd">
+  <container-descriptor>
+    <prefer-application-packages>
+      <package-name>org.eclipse.persistence.*</package-name>
+      <package-name>com.sun.el.*</package-name>
+      <package-name>javax.el.*</package-name>
+    </prefer-application-packages>
+  </container-descriptor>
+  <context-root>/pmobile</context-root>
+  <!--
+     <library-ref>
+      <library-name>jsf</library-name>
+      <specification-version>2.0</specification-version>
+      <implementation-version>1.0.0.0_2-0-2</implementation-version>
+      <exact-match>true</exact-match>
+  </library-ref>
+  -->
+  <jsp-descriptor>
+    <compress-html-template>
+            true
+        </compress-html-template>
+  </jsp-descriptor>
+</weblogic-web-app>

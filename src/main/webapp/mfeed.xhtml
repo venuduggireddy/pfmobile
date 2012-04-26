@@ -1,0 +1,62 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:pm="http://primefaces.org/mobile"
+        contentType="text/html" renderKitId="PRIMEFACES_MOBILE">
+    <pm:page title="Mobile Home" mini="true">
+        <!-- Page content goes here -->
+        <f:facet name="meta">
+            <meta name="apple-mobile-web-app-capabel" content="yes" />
+        </f:facet>
+        <!-- Main Page to List all Feeds -->
+        <pm:view id="main">
+            <pm:header title="Rss Feeds" swatch="b" fixed="true">
+                <f:facet name="right"><h:outputLink value="#newFeed?reverse=true">Add Feed</h:outputLink></f:facet>
+            </pm:header>
+            <pm:content>
+                <h:form id="listFeedNames">
+                    <p:dataList value="#{mobileTestController.rssFeedsList}" var="feed" type="inset">
+                        <f:attribute name="filter" value="true" />
+                        <p:column>
+                            <p:commandLink value="#{feed.title}" update=":viewFeed" action="#{mobileTestController.viewSelectedFeed(feed)}"/>
+                        </p:column>
+                    </p:dataList>
+                </h:form>
+            </pm:content>
+            <pm:footer fixed="true" style="text-align: center; font-size: 10px">
+                <h:outputText value="Fixed Footer" style="text-align: center"/>
+            </pm:footer>
+        </pm:view>
+        <!-- List Feed Results -->
+        <pm:view id="feedsView">
+            <pm:header title="View Feed" swatch="b" fixed="true">
+                <f:facet name="left"><p:button value="Home" icon="home" href="#main?reverse=true"/></f:facet>
+                <f:facet name="right"><h:outputLink value="#newFeed?reverse=true">Add Feed</h:outputLink></f:facet>
+            </pm:header>
+            <pm:content>
+                <h:form id="viewFeed">
+                    <p:feedReader value="#{mobileTestController.selectedFeed}" var="feed" size="10">
+                        <h:outputText value="#{feed.title}" style="font-weight: bold"/>
+                        <br />
+                        <h:outputText value="#{feed.description.value}" escape="false"/>
+                        <p:separator />
+                    </p:feedReader>
+                </h:form>
+            </pm:content>
+        </pm:view>
+        <!-- Add New Feed Form -->
+        <pm:view id="newFeed">
+            <pm:header title="Add New Feed" swatch="b" fixed="true">
+                <f:facet name="left"><p:button value="Home" icon="home" href="#main?reverse=true"/></f:facet>
+            </pm:header>
+            <pm:content>
+                <h:form>
+                    <p:inputText id="feed_name" label="Title:" value="#{mobileTestController.rssFeed.title}"/>
+                    <p:inputText id="feed_rss" label="Rss URL:" value="#{mobileTestController.rssFeed.rssUrl}"/>
+                    <p:commandButton value="Save" action="#{mobileTestController.addNewFeed}" update="@form,:listFeedNames" icon="check" />
+                </h:form>
+            </pm:content>
+        </pm:view>
+    </pm:page>
+</f:view>
