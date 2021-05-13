@@ -13,7 +13,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>4.8.2</junit.version>
-        <primefaces.version>3.2</primefaces.version>
+        <primefaces.version>8.0</primefaces.version>
         <primefaces.mobile.version>0.9.2</primefaces.mobile.version>
         <jsf.version>2.1.7</jsf.version>
         <netbeans.hint.deploy.server>WebLogic9</netbeans.hint.deploy.server>
